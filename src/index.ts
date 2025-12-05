@@ -18,10 +18,7 @@ interface IAnalyzeOptions {
 
 const program = new Command();
 
-program
-  .name('n8ncheck')
-  .description('Security checker for n8n workflows')
-  .version('1.0.0');
+program.name('n8ncheck').description('Security checker for n8n workflows').version('1.0.0');
 
 // Analyze command
 program
