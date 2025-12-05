@@ -1,0 +1,63 @@
+{
+  "createdAt": "2025-10-22T17:09:08.541Z",
+  "updatedAt": "2025-10-22T17:09:08.541Z",
+  "id": "AcWlMqBD1YwoQU1t",
+  "name": "HTTP Request Test - Dynamic URL Construction",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "http-dynamic",
+      "name": "HTTP Request Dynamic",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "url": "{{ $json.endpoint }}",
+        "method": "GET",
+        "authentication": "none"
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request Dynamic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "390187e2-9837-41fc-b2e7-7b169b8788a2",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

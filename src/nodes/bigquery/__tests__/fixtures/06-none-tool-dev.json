@@ -1,0 +1,71 @@
+{
+  "updatedAt": "2025-10-27T13:40:51.959Z",
+  "createdAt": "2025-10-27T13:40:51.959Z",
+  "id": "hqe4EoLU4ndUWGdY",
+  "name": "BigQuery Test - Tool Dev (None)",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "ai-agent",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        200,
+        100
+      ],
+      "parameters": {
+        "options": {}
+      }
+    },
+    {
+      "id": "bigquery-tool-dev",
+      "name": "BigQuery Tool Dev",
+      "type": "n8n-nodes-base.googleBigQueryTool",
+      "typeVersion": 2,
+      "position": [
+        400,
+        200
+      ],
+      "parameters": {
+        "toolDescription": "Execute SQL queries on BigQuery development database",
+        "projectId": {
+          "__rl": true,
+          "value": "example-dev",
+          "mode": "id"
+        },
+        "sqlQuery": "SELECT COUNT(*) FROM dev_users",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "BigQuery Tool Dev": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ],
+      "main": []
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "299e4665-a45b-4d73-908d-8235c83040eb",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

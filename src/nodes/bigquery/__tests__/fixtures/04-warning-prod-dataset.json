@@ -1,0 +1,67 @@
+{
+  "updatedAt": "2025-10-27T13:40:27.721Z",
+  "createdAt": "2025-10-27T13:40:27.721Z",
+  "id": "zuiHu2BdZ4jBeT7f",
+  "name": "BigQuery Test - Prod Dataset (Warning)",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "bigquery-prod-dataset",
+      "name": "BigQuery Prod Dataset",
+      "type": "n8n-nodes-base.googleBigQuery",
+      "typeVersion": 2,
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "example-dev",
+          "mode": "id"
+        },
+        "sqlQuery": "SELECT COUNT(*) FROM example-prod.analytics_prod.user_events",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "BigQuery Prod Dataset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "9d2bd0d7-5ead-4475-b76e-40f770ee72ae",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

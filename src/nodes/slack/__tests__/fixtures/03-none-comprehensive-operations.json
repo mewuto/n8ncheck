@@ -1,0 +1,912 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "aaaa",
+          "mode": "name"
+        },
+        "text": "Test message",
+        "otherOptions": {}
+      },
+      "id": "8aee068c-4715-412f-be64-cc83be49d4e2",
+      "name": "Message Send",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -320,
+        32
+      ],
+      "webhookId": "623ce4c3-da84-4644-909a-0b4e2213cb53",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "channelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "ts": 1234567890.123456,
+        "text": "Updated message",
+        "updateFields": {},
+        "otherOptions": {}
+      },
+      "id": "fac3786e-6892-434b-ba99-6c8e619876c7",
+      "name": "Message Update",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -128,
+        32
+      ],
+      "webhookId": "8c417cbe-d4c8-4dcd-ab0b-41dbd81e2930",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "xxxxx",
+          "mode": "id"
+        }
+      },
+      "id": "a4579585-b425-4688-937f-4751990aa6b3",
+      "name": "Message Delete",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        80,
+        32
+      ],
+      "webhookId": "166707eb-838f-4bda-ba29-0442fd890671",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "query": "test search query",
+        "options": {}
+      },
+      "id": "a385de43-909c-4885-9e17-ffc2ee7a8818",
+      "name": "Message Search",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        32
+      ],
+      "webhookId": "2dd28db3-e7e9-4570-a2b9-36eeb693bf4b",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getPermalink",
+        "channelId": {
+          "__rl": true,
+          "value": "xxx",
+          "mode": "id"
+        }
+      },
+      "id": "27b8b327-6435-4095-ad1e-8824372aca76",
+      "name": "Message Get Permalink",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        32
+      ],
+      "webhookId": "d77fa25f-cb4b-4a1e-9fd5-6a789af75ee6",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "channel"
+      },
+      "id": "4dc55a7a-965a-45fa-b90d-394182312948",
+      "name": "Channel Create",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -320,
+        240
+      ],
+      "webhookId": "4aae36fb-dba0-4c58-804e-2e65cd68bb51",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "channel",
+        "operation": "get",
+        "channelId": {
+          "__rl": true,
+          "mode": "id",
+          "value": ""
+        },
+        "options": {}
+      },
+      "id": "b7306e20-a375-457b-bf9c-e4a3b914bffd",
+      "name": "Channel Get",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -128,
+        240
+      ],
+      "webhookId": "f2977e57-3421-4f02-8bc3-c6b87553946c",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "channel",
+        "operation": "getAll",
+        "limit": 100,
+        "filters": {}
+      },
+      "id": "c00d6431-900b-4215-ac2a-a4e98a669ab6",
+      "name": "Channel Get All",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        80,
+        240
+      ],
+      "webhookId": "31d61e51-0814-4199-bd0c-70176fde573d",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "channel",
+        "operation": "history",
+        "channelId": {
+          "__rl": true,
+          "value": "xx",
+          "mode": "id"
+        },
+        "limit": 100,
+        "filters": {}
+      },
+      "id": "51aae852-aa49-4a82-ba53-68844c76e6e7",
+      "name": "Channel History",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        240
+      ],
+      "webhookId": "d5474f18-0aa6-409d-991b-b239a6fb32bf",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "channel",
+        "operation": "invite",
+        "channelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "userIds": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "f9111856-a9ee-4890-82ee-09ed392175e9",
+      "name": "Channel Invite",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        240
+      ],
+      "webhookId": "7fd669d2-7b43-4c44-a36e-e7483dc85495",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "channel",
+        "operation": "archive",
+        "channelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "9fc256d3-4037-45af-bd10-2dfe3dfe47e7",
+      "name": "Channel Archive",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -320,
+        432
+      ],
+      "webhookId": "e5f9799c-9973-4a95-be41-f09efd61da80",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "channel",
+        "operation": "join",
+        "channelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "863dbbd5-c33f-4986-8aee-763c459c9e12",
+      "name": "Channel Join",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -128,
+        432
+      ],
+      "webhookId": "72a8d05c-eaf6-4c5e-b287-946a28e6bb2c",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "channel",
+        "operation": "leave",
+        "channelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "45398629-247b-46e0-8d15-06ed56aae2cd",
+      "name": "Channel Leave",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        80,
+        432
+      ],
+      "webhookId": "c23b806e-1d15-4344-b120-37aba70dcf46",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "channel",
+        "operation": "rename",
+        "channelId": {
+          "__rl": true,
+          "value": "xx",
+          "mode": "id"
+        },
+        "name": "renamed-channel"
+      },
+      "id": "0ec56dc1-f37f-4157-b354-c53ecf0db6fd",
+      "name": "Channel Rename",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        432
+      ],
+      "webhookId": "fd06a677-9e4b-408e-b136-a40a10341e51",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "channel",
+        "operation": "setTopic",
+        "channelId": {
+          "__rl": true,
+          "value": "xx",
+          "mode": "id"
+        },
+        "topic": "Test channel topic"
+      },
+      "id": "9813dccd-0b56-47b6-9a0f-6f0594df8496",
+      "name": "Channel Set Topic",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        432
+      ],
+      "webhookId": "d63c3381-81e4-450d-879a-6f0eb9370a96",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "options": {
+          "initialComment": "Test file upload",
+          "title": "Test File"
+        }
+      },
+      "id": "53686c46-df6e-42dc-a2ba-b3682e7b60b1",
+      "name": "File Upload",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -320,
+        640
+      ],
+      "webhookId": "419827b5-dfff-45cd-a8d9-310fd1500355",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "fileId": "F1234567890"
+      },
+      "id": "cbedd849-a495-4e10-94e6-4c68209dbeb9",
+      "name": "File Get",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -128,
+        640
+      ],
+      "webhookId": "90a2facf-527a-4118-8260-08fb9402b3d4",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "getAll",
+        "limit": 100,
+        "filters": {}
+      },
+      "id": "a152cb97-3dec-4ce4-8d6a-cd262d93c3fc",
+      "name": "File Get All",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        80,
+        640
+      ],
+      "webhookId": "b5e3a296-dda2-4523-a29d-ca7f3e8f6f06",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "reaction",
+        "channelId": {
+          "__rl": true,
+          "value": "xxxx",
+          "mode": "url"
+        },
+        "name": "thumbsup"
+      },
+      "id": "be8546ce-2b17-4504-af17-bd86d94f7e72",
+      "name": "Reaction Add",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        640
+      ],
+      "webhookId": "9c97c61f-56d5-479e-9bd7-4fb3dc4c6f21",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "reaction",
+        "operation": "get",
+        "channelId": {
+          "__rl": true,
+          "value": "iiiii",
+          "mode": "id"
+        }
+      },
+      "id": "18542815-554f-4ee8-beb5-68fcd36eb83e",
+      "name": "Reaction Get",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        640
+      ],
+      "webhookId": "a6957a9d-074b-4da6-aa1a-96290c41688d",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "reaction",
+        "operation": "remove",
+        "channelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "timestamp": 314314,
+        "name": "thumbsup"
+      },
+      "id": "1bad5f36-179c-429d-9bdb-e50e381983c0",
+      "name": "Reaction Remove",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -320,
+        832
+      ],
+      "webhookId": "f4415fec-0142-4489-9200-98c72d8598ce",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "user",
+        "user": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "29121ac4-f3ef-4580-ac21-c092cc55c9d2",
+      "name": "User Info",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -128,
+        832
+      ],
+      "webhookId": "c09b63a6-5f7a-496a-9fae-ac05e0b11717",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "user",
+        "operation": "getAll",
+        "limit": 100
+      },
+      "id": "4bc9b938-80c7-462f-b003-d1bb5a7d06ef",
+      "name": "User Get All",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        80,
+        832
+      ],
+      "webhookId": "19342fc3-e8c5-4bbd-a52f-ad6d85aa7e93",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "user",
+        "operation": "getProfile",
+        "user": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "ead6d632-953a-4f21-9c7d-faaa1316dfbb",
+      "name": "User Get Profile",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        832
+      ],
+      "webhookId": "ca532868-a259-443f-b033-8817ac722d17",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "user",
+        "operation": "getPresence",
+        "user": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "2dac6bf7-9f90-4872-aab6-8a0bad4e3f3f",
+      "name": "User Get Presence",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        832
+      ],
+      "webhookId": "c2cd1672-e0ec-47fb-a249-c27fc4bf64e5",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "user",
+        "operation": "updateProfile",
+        "options": {}
+      },
+      "id": "725f18f0-7126-48f3-b466-454a451a3a73",
+      "name": "User Update Profile",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -320,
+        1040
+      ],
+      "webhookId": "6bec77fb-2e6a-4ce2-8ed7-9a87b18149a5",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "userGroup",
+        "name": "test-group",
+        "Options": {}
+      },
+      "id": "67cd0945-36dc-4df9-bf88-ecc843b39937",
+      "name": "User Group Create",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -128,
+        1040
+      ],
+      "webhookId": "733bf4ff-614f-42e6-9cfe-a26df2033b26",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "userGroup",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "6aa5eb57-4736-43c7-9494-85d45aebc436",
+      "name": "User Group Get All",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        80,
+        1040
+      ],
+      "webhookId": "68fc1bc4-d9b4-4ab3-b88d-42f1cedb1c99",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "userGroup",
+        "operation": "update",
+        "userGroupId": "S1234567890",
+        "updateFields": {
+          "description": "Updated test user group",
+          "name": "updated-test-group"
+        }
+      },
+      "id": "dee41c03-871f-4bc3-9a3b-af85cd71a284",
+      "name": "User Group Update",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        1040
+      ],
+      "webhookId": "14a18a08-2cb3-4d9d-91c3-f19277b2e0fb",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "userGroup",
+        "operation": "enable",
+        "userGroupId": "S1234567890",
+        "option": {}
+      },
+      "id": "517c4c82-4ce4-497f-93b3-4489037c939b",
+      "name": "User Group Enable",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        1040
+      ],
+      "webhookId": "f58682bf-b3ee-4a94-bb1a-1c69b158d8c6",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "userGroup",
+        "operation": "disable",
+        "userGroupId": "S1234567890",
+        "options": {}
+      },
+      "id": "aab28554-521c-453c-bf34-07927d0cb100",
+      "name": "User Group Disable",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -320,
+        1232
+      ],
+      "webhookId": "c850df72-2374-4cf0-a542-35f276f17622",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "star",
+        "target": "message",
+        "channelId": {
+          "__rl": true,
+          "value": "xxxx",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "51b83a39-5505-4785-87a8-c536d26af2b7",
+      "name": "Star Add",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -128,
+        1232
+      ],
+      "webhookId": "acd4b3e1-15df-490d-96aa-e6a160c72bc0",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "star",
+        "operation": "delete",
+        "options": {}
+      },
+      "id": "f03c0945-6b17-47b4-87fb-f1b35ae84502",
+      "name": "Star Delete",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        80,
+        1232
+      ],
+      "webhookId": "388a761d-c3c1-408d-aa26-b5c5802e5ab2",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "star",
+        "operation": "getAll",
+        "limit": 100
+      },
+      "id": "49e11d8d-be21-4d15-ad03-4c5d2c7c1d6d",
+      "name": "Star Get All",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        1232
+      ],
+      "webhookId": "069c7dd5-29aa-44ed-be36-ecf2515874e5",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "#aaaa",
+          "mode": "name"
+        },
+        "text": "Test message",
+        "otherOptions": {}
+      },
+      "id": "940d8c34-4b6c-4827-92b4-82c8b310a442",
+      "name": "Message Send1",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -544,
+        48
+      ],
+      "webhookId": "623ce4c3-da84-4644-909a-0b4e2213cb53",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "hogehoge",
+          "mode": "url"
+        },
+        "text": "Test message",
+        "otherOptions": {}
+      },
+      "id": "184e3b97-9115-404d-9c10-289d783f8879",
+      "name": "Message Send2",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -576,
+        224
+      ],
+      "webhookId": "623ce4c3-da84-4644-909a-0b4e2213cb53",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    }
+  ],
+  "connections": {},
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "147b38333526c44670f7f687cc2fbfc5f605c1b4e4a1a7caa6f20df5ac79ac57"
+  }
+}

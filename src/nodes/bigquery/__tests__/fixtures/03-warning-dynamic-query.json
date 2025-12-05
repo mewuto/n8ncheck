@@ -1,0 +1,67 @@
+{
+  "updatedAt": "2025-10-27T13:39:45.554Z",
+  "createdAt": "2025-10-27T13:38:49.358Z",
+  "id": "YTpdhq2BaoZmSNhj",
+  "name": "BigQuery Test - Dynamic Query (Warning)",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        112,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "example-dev",
+          "mode": "id"
+        },
+        "sqlQuery": "SELECT * FROM {{ $json.tableName }} WHERE id = {{ $json.userId }}",
+        "options": {}
+      },
+      "id": "bigquery-dynamic",
+      "name": "BigQuery Dynamic",
+      "type": "n8n-nodes-base.googleBigQuery",
+      "typeVersion": 2,
+      "position": [
+        304,
+        112
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "BigQuery Dynamic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "0ec149c7-371e-48b1-8f06-d37bc2aacaa3",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

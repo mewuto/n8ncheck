@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "trigger": [
+          "any_event"
+        ],
+        "channelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5f64d21e-5e63-446a-ab8b-8abf214ac337",
+      "name": "Slack Trigger",
+      "webhookId": "ff723c06-9991-49ba-b8ef-0d5d46c05a16",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "a45de483-ad38-4935-9e1d-5f2f561941ea",
+      "name": "HTTP Request"
+    }
+  ],
+  "connections": {
+    "Slack Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "147b38333526c44670f7f687cc2fbfc5f605c1b4e4a1a7caa6f20df5ac79ac57"
+  }
+}

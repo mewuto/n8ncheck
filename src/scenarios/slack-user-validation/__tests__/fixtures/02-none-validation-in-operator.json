@@ -1,0 +1,61 @@
+{
+  "name": "Test Case 3: in operator validation",
+  "nodes": [
+    {
+      "id": "slack-trigger-3",
+      "name": "Slack Trigger",
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "trigger": ["app_mention", "message"],
+        "watchWorkspace": false,
+        "options": {}
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "1",
+          "name": "Slack account"
+        }
+      },
+      "webhookId": "test-webhook-id-3"
+    },
+    {
+      "id": "user-validation-3",
+      "name": "User Validation - in operator",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "parameters": {
+        "jsCode": "// Extract user from Slack event\nconst userId = $input.item.json.user;\n\n// User whitelist with roles (MUST use 'users' variable name)\nconst users = {\n  'U1234ABCD': { name: 'bot_user', role: 'bot' },\n  'U9999XXXX': { name: 'dev_user', role: 'developer' }\n};\n\n// Check using 'in' operator\nif (!(userId in users)) {\n  throw new Error(`User ${userId} not found in authorized user list`);\n}\n\n// Return user details\nreturn {\n  ...($input.item.json),\n  userInfo: users[userId],\n  isAuthorized: true,\n  validationMethod: 'in_operator'\n};"
+      }
+    }
+  ],
+  "connections": {
+    "Slack Trigger": {
+      "main": [
+        [
+          {
+            "node": "User Validation - in operator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "active": false,
+  "id": "test-case-3",
+  "createdAt": "2024-01-01T00:00:00.000Z",
+  "updatedAt": "2024-01-01T00:00:00.000Z"
+}

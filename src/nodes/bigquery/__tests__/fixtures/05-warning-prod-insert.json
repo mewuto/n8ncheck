@@ -1,0 +1,77 @@
+{
+  "updatedAt": "2025-10-27T13:40:38.241Z",
+  "createdAt": "2025-10-27T13:40:38.241Z",
+  "id": "EyqWn1YOI64ofikC",
+  "name": "BigQuery Test - Prod Insert (Warning)",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "bigquery-config-error",
+      "name": "BigQuery Config Error",
+      "type": "n8n-nodes-base.googleBigQuery",
+      "typeVersion": 2,
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "operation": "insert",
+        "projectId": {
+          "__rl": true,
+          "value": "example-prod",
+          "mode": "id"
+        },
+        "datasetId": {
+          "__rl": true,
+          "value": "analytics_prod",
+          "mode": "id"
+        },
+        "tableId": {
+          "__rl": true,
+          "value": "user_events",
+          "mode": "id"
+        },
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "BigQuery Config Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "5a704400-8714-492b-89d8-36ab95913ff2",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

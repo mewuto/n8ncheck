@@ -1,0 +1,61 @@
+{
+  "name": "Test Case 4: BAD - No user validation",
+  "nodes": [
+    {
+      "id": "slack-trigger-bad",
+      "name": "Slack Trigger",
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "trigger": ["app_mention"],
+        "watchWorkspace": false,
+        "options": {}
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "1",
+          "name": "Slack account"
+        }
+      },
+      "webhookId": "test-webhook-id-4"
+    },
+    {
+      "id": "direct-process",
+      "name": "Direct Processing",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "parameters": {
+        "jsCode": "// BAD EXAMPLE: No user authorization check\n// This directly processes the request without validating the user\n\nconst userId = $input.item.json.user;\nconst message = $input.item.json.text;\n\n// Directly process without authorization check\nconsole.log(`Processing request from user ${userId}`);\n\nreturn {\n  userId: userId,\n  message: message,\n  processed: true,\n  timestamp: new Date().toISOString(),\n  // WARNING: No authorization check performed!\n  securityNote: 'This workflow accepts requests from any user'\n};"
+      }
+    }
+  ],
+  "connections": {
+    "Slack Trigger": {
+      "main": [
+        [
+          {
+            "node": "Direct Processing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "active": false,
+  "id": "test-case-4",
+  "createdAt": "2024-01-01T00:00:00.000Z",
+  "updatedAt": "2024-01-01T00:00:00.000Z"
+}

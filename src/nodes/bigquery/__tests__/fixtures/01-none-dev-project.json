@@ -1,0 +1,67 @@
+{
+  "updatedAt": "2025-10-27T13:38:28.905Z",
+  "createdAt": "2025-10-27T13:38:28.905Z",
+  "id": "EvpUdBz1eOpRtOQu",
+  "name": "BigQuery Test - Dev Project (None)",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "bigquery-dev",
+      "name": "BigQuery Dev",
+      "type": "n8n-nodes-base.googleBigQuery",
+      "typeVersion": 2,
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "example-dev",
+          "mode": "id"
+        },
+        "sqlQuery": "SELECT COUNT(*) FROM dev_users",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "BigQuery Dev",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "0d994cd6-31bb-4597-b0be-e8076adec0f3",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

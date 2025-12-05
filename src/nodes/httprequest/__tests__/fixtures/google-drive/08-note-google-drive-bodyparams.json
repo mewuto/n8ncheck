@@ -1,0 +1,37 @@
+{
+  "name": "HTTP Request with bodyParameters for Google Drive",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.googleapis.com/drive/v3/files/1ABC123DEF456/permissions",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "group"
+            },
+            {
+              "name": "role",
+              "value": "reader"
+            },
+            {
+              "name": "emailAddress",
+              "value": "group@example.com"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [0, 0],
+      "id": "bodyparams-gdrive-id",
+      "name": "Google Drive bodyParams"
+    }
+  ],
+  "connections": {},
+  "active": false,
+  "settings": {}
+}

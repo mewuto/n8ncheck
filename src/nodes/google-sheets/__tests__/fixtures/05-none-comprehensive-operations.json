@@ -1,0 +1,320 @@
+{
+  "name": "Google Sheets Comprehensive Operations",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "title": "Comprehensive Test Spreadsheet",
+        "options": {}
+      },
+      "id": "65640a91-c1e8-4f19-9f07-7955c023c7b5",
+      "name": "Document Create",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -304,
+        -304
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1EXAMPLE_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "id",
+          "value": "Sheet1"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "55386ffa-c833-4708-9699-4546821e3a02",
+      "name": "Sheet Append",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -272,
+        -112
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1EXAMPLE_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "id",
+          "value": "Sheet1"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "91058088-3cc6-43c1-b8bf-9ff3922260e8",
+      "name": "Sheet Update",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -16,
+        -112
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1EXAMPLE_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "id",
+          "value": "Sheet1"
+        },
+        "combineFilters": "AND",
+        "options": {}
+      },
+      "id": "ee1de033-ac93-44f7-95b0-97a9bde08a35",
+      "name": "Sheet Read",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -160,
+        64
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "operation": "remove",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1EXAMPLE_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "id",
+          "value": "Sheet2"
+        }
+      },
+      "id": "2c69f7d7-a269-497e-a219-34bae1f5cb8e",
+      "name": "Sheet Remove",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        48,
+        64
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "operation": "deleteSpreadsheet",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "40023a4b-dea3-40b2-ad0b-b797fe16281c",
+      "name": "Document Delete",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -80,
+        -288
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1EXAMPLE_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "id"
+        }
+      },
+      "id": "42e5c330-b360-47d6-b9fb-a7124b04df52",
+      "name": "Sheet AppendOrUpdate",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -144,
+        304
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1EXAMPLE_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "id",
+          "value": "Sheet1"
+        }
+      },
+      "id": "24042db6-d387-48c9-b3b3-dbee4125b596",
+      "name": "Sheet Clear",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        48,
+        304
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1EXAMPLE_SPREADSHEET_ID"
+        },
+        "options": {}
+      },
+      "id": "a7fc6b32-4090-4c48-bd96-ad161a89d789",
+      "name": "Sheet Create",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        256,
+        304
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1EXAMPLE_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "e2674697-7397-4148-a3dd-b3c203d0f2bd",
+      "name": "Sheet Create1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        336,
+        16
+      ],
+      "credentials": {}
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Document Create": {
+      "main": [
+        []
+      ]
+    },
+    "Sheet Append": {
+      "main": [
+        [
+          {
+            "node": "Sheet Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheet Read": {
+      "main": [
+        [
+          {
+            "node": "Sheet Remove",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheet Remove": {
+      "main": [
+        []
+      ]
+    },
+    "Sheet AppendOrUpdate": {
+      "main": [
+        [
+          {
+            "node": "Sheet Clear",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheet Clear": {
+      "main": [
+        [
+          {
+            "node": "Sheet Create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "versionId": "001f33a5-6e5e-4cb4-8a5e-6d809bf27444",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "147b38333526c44670f7f687cc2fbfc5f605c1b4e4a1a7caa6f20df5ac79ac57"
+  },
+  "id": "YWkNdXH71uF13vub",
+  "tags": []
+}

@@ -1,0 +1,62 @@
+{
+  "createdAt": "2025-10-23T10:00:00.000Z",
+  "updatedAt": "2025-10-23T10:00:00.000Z",
+  "id": "7Y1H91BFUN5oNOsJ",
+  "name": "HTTP Request Test - Configuration Error",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "http-config-error",
+      "name": "HTTP Request Config Error",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "method": "GET",
+        "authentication": "none"
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request Config Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "6967334c-123a-4cd0-843d-977524e5146e",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

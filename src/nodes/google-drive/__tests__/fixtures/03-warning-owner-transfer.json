@@ -1,0 +1,42 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "XXXXXXX",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "owner",
+            "type": "user",
+            "emailAddress": "newowner@example.com"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        448,
+        240
+      ],
+      "id": "99c80041-d326-472f-9d41-0b72b4f7b78c",
+      "name": "Share file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "KEsPptpVbVmtTDWi",
+          "name": "google drive oauth"
+        }
+      }
+    }
+  ],
+  "connections": {},
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "147b38333526c44670f7f687cc2fbfc5f605c1b4e4a1a7caa6f20df5ac79ac57"
+  }
+}

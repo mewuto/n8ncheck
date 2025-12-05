@@ -1,0 +1,77 @@
+{
+  "name": "Test Case 7: Slack to BigQuery direct - no user validation",
+  "nodes": [
+    {
+      "id": "slack-trigger-7",
+      "name": "Slack Trigger",
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "trigger": ["app_mention"],
+        "watchWorkspace": false
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "1",
+          "name": "Slack account"
+        }
+      },
+      "webhookId": "test-webhook-id"
+    },
+    {
+      "id": "bigquery-7",
+      "name": "Execute BigQuery",
+      "type": "n8n-nodes-base.googleBigQuery",
+      "typeVersion": 2.1,
+      "position": [450, 300],
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "database",
+        "operation": "executeQuery",
+        "projectId": {
+          "mode": "id",
+          "value": "test-project"
+        },
+        "sqlQuery": "SELECT * FROM sensitive_data LIMIT 100"
+      },
+      "credentials": {
+        "googleBigQueryOAuth2Api": {
+          "id": "1",
+          "name": "Google BigQuery account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Slack Trigger": {
+      "main": [
+        [
+          {
+            "node": "Execute BigQuery",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "975869bc-17d1-49bc-892d-5974c4a1728f",
+  "triggerCount": 0,
+  "active": false,
+  "isArchived": false,
+  "id": "test-case-7",
+  "createdAt": "2024-01-01T00:00:00.000Z",
+  "updatedAt": "2024-01-01T00:00:00.000Z",
+  "tags": []
+}

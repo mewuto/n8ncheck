@@ -1,0 +1,40 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "id",
+          "value": "",
+          "cachedResultName": "",
+          "cachedResultUrl": ""
+        }
+      },
+      "id": "f64b2d8a-c36c-484a-8b31-109b0f28611e",
+      "name": "Google Sheets Read Safe",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        240,
+        -160
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "5s6y1281FRiLk7EC",
+          "name": "example-spreadsheet-name"
+        }
+      }
+    }
+  ],
+  "connections": {},
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "147b38333526c44670f7f687cc2fbfc5f605c1b4e4a1a7caa6f20df5ac79ac57"
+  }
+}

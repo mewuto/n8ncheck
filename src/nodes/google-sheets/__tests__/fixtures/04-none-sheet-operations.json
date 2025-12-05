@@ -1,0 +1,94 @@
+{
+  "updatedAt": "2025-11-03T15:00:00.000Z",
+  "createdAt": "2025-11-03T15:00:00.000Z",
+  "id": "GoogleSheetsTest006",
+  "name": "Google Sheets Safe Sheet Operations",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [100, 100],
+      "parameters": {}
+    },
+    {
+      "id": "google-sheets-clear",
+      "name": "Google Sheets Clear Safe",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [300, 100],
+      "parameters": {
+        "resource": "sheet",
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1EXAMPLE_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "id",
+          "value": "Sheet1"
+        }
+      }
+    },
+    {
+      "id": "google-sheets-create-sheet",
+      "name": "Google Sheets Create Sheet Safe",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [500, 100],
+      "parameters": {
+        "resource": "sheet",
+        "operation": "create",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1EXAMPLE_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "id",
+          "value": "NewSheet"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets Clear Safe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Clear Safe": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets Create Sheet Safe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "google-sheets-test-006",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

@@ -1,0 +1,78 @@
+{
+  "name": "n8ncheck",
+  "version": "1.0.0",
+  "description": "Security vulnerability checker for n8n workflows",
+  "main": "dist/index.js",
+  "bin": {
+    "n8ncheck": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "dev:pr-comment": "ts-node src/index.ts analyze -f pr-comment",
+    "start": "node dist/index.js",
+    "analyze": "npm run build && node dist/index.js analyze",
+    "analyze:json": "npm run build && node dist/index.js analyze",
+    "report:json": "npm run build && node dist/index.js analyze $FILE -f json -o ${FILE%.json}_report.json",
+    "clean": "rm -rf dist reports *.json *.md",
+    "test": "jest",
+    "lint": "biome lint src/",
+    "typecheck": "tsc --noEmit",
+    "fmt": "biome format --write src/",
+    "fmt:check": "biome check src/",
+    "fix": "biome check --write src/"
+  },
+  "keywords": [
+    "n8n",
+    "security",
+    "workflow",
+    "checker",
+    "validator"
+  ],
+  "author": "mewuto",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mewuto/n8ncheck"
+  },
+  "homepage": "https://github.com/mewuto/n8ncheck#readme",
+  "bugs": {
+    "url": "https://github.com/mewuto/n8ncheck/issues"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "@babel/parser": "^7.28.5",
+    "@babel/traverse": "^7.28.5",
+    "@babel/types": "^7.28.5",
+    "acorn": "^8.15.0",
+    "acorn-walk": "^8.3.4",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.2",
+    "graphology": "^0.26.0",
+    "graphology-components": "^1.5.4",
+    "graphology-dag": "^0.4.1",
+    "graphology-traversal": "^0.3.1",
+    "js-yaml": "^4.1.0",
+    "n8n-nodes-base": "^1.118.1",
+    "n8n-workflow": "^1.117.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.6",
+    "@n8n/api-types": "^0.54.0",
+    "@types/babel__traverse": "^7.28.0",
+    "@types/jest": "^30.0.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^24.10.1",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

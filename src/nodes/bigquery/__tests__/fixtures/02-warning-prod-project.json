@@ -1,0 +1,67 @@
+{
+  "updatedAt": "2025-10-27T13:38:37.956Z",
+  "createdAt": "2025-10-27T13:38:37.956Z",
+  "id": "ToT0l7JP4DSpFTBE",
+  "name": "BigQuery Test - Prod Project (Warning)",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "bigquery-prod",
+      "name": "BigQuery Prod",
+      "type": "n8n-nodes-base.googleBigQuery",
+      "typeVersion": 2,
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "example-prod",
+          "mode": "id"
+        },
+        "sqlQuery": "SELECT * FROM users WHERE active = true",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "BigQuery Prod",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "5844c754-7d2f-4ee0-b5b1-f008947f4db0",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

@@ -1,0 +1,66 @@
+{
+  "createdAt": "2025-10-23T10:00:00.000Z",
+  "updatedAt": "2025-10-23T10:00:00.000Z",
+  "id": "9Y1H91BFUN5oNOsJ",
+  "name": "HTTP Request Test - Google Drive JSON Body",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "jsonbody-gdrive-id",
+      "name": "Google Drive JSON Body",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.googleapis.com/drive/v3/files/1ABC123DEF456/permissions",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"type\": \"group\",\n  \"role\": \"reader\",\n  \"emailAddress\": \"group@example.com\"\n}",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Drive JSON Body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "6967334c-123a-4cd0-843d-977524e5146i",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

@@ -1,0 +1,37 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "C9999ABCD"
+        },
+        "text": "Message with direct channel ID",
+        "otherOptions": {}
+      },
+      "id": "2383c678-c1f6-4ea9-9497-bd464c8f4aef",
+      "name": "Direct Channel ID Message",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        128,
+        80
+      ],
+      "webhookId": "9caf1cfc-bf19-45c3-978b-bb001d07b0fe",
+      "credentials": {
+        "slackApi": {
+          "id": "EXAMPLE_CREDENTIAL_ID",
+          "name": "example slack bot"
+        }
+      }
+    }
+  ],
+  "connections": {},
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "147b38333526c44670f7f687cc2fbfc5f605c1b4e4a1a7caa6f20df5ac79ac57"
+  }
+}

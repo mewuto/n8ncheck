@@ -1,0 +1,65 @@
+{
+  "name": "Test Case 1: hasOwnProperty + throw - uses 'users' variable",
+  "nodes": [
+    {
+      "id": "slack-trigger-1",
+      "name": "Slack Trigger",
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "trigger": ["app_mention", "message"],
+        "watchWorkspace": false,
+        "options": {}
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "1",
+          "name": "Slack account"
+        }
+      },
+      "webhookId": "test-webhook-id-1"
+    },
+    {
+      "id": "user-validation-1",
+      "name": "User Validation - hasOwnProperty",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "parameters": {
+        "jsCode": "// Extract user ID from Slack event\nconst userId = $input.item.json.user;\n\n// Define authorized users with names (MUST use 'users' variable name)\nconst users = {\n  'U1234ABCD': 'bot_user',\n  'U9999XXXX': 'admin_user'\n};\n\n// Validate user authorization using hasOwnProperty\nif (!users.hasOwnProperty(userId)) {\n  throw new Error(`Access denied: User ${userId} is not authorized to use this workflow`);\n}\n\n// Return enriched data for authorized users\nreturn {\n  ...($input.item.json),\n  authorizedUser: users[userId],\n  isAuthorized: true,\n  timestamp: new Date().toISOString()\n};"
+      }
+    }
+  ],
+  "connections": {
+    "Slack Trigger": {
+      "main": [
+        [
+          {
+            "node": "User Validation - hasOwnProperty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "f7ba829a-09c9-46a3-8270-363d83564814",
+  "triggerCount": 0,
+  "active": false,
+  "isArchived": false,
+  "id": "test-case-1",
+  "createdAt": "2024-01-01T00:00:00.000Z",
+  "updatedAt": "2024-01-01T00:00:00.000Z",
+  "tags": []
+}

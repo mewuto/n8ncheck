@@ -1,0 +1,40 @@
+{
+  "name": "Google Drive Share Test",
+  "nodes": [
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleBigQuery",
+      "typeVersion": 2.1,
+      "position": [
+        -448,
+        -112
+      ],
+      "id": "4ac86377-6bb3-4338-8188-d67ba14381a8",
+      "name": "Execute a SQL query"
+    }
+  ],
+  "pinData": {},
+  "connections": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "versionId": "c7e41d67-65f7-4f99-be96-15b22b7a7f02",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "147b38333526c44670f7f687cc2fbfc5f605c1b4e4a1a7caa6f20df5ac79ac57"
+  },
+  "id": "iXYLZXbfVIQKE3T2",
+  "tags": []
+}

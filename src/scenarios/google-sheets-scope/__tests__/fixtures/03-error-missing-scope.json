@@ -1,0 +1,62 @@
+{
+  "name": "Google Sheets Create without Scope Setting",
+  "nodes": [
+    {
+      "id": "sheets-create-node",
+      "name": "Create Spreadsheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [300, 300],
+      "parameters": {
+        "resource": "spreadsheet",
+        "operation": "create",
+        "title": "Unshared Spreadsheet",
+        "sheetsUi": {
+          "sheetValues": [
+            {
+              "sheetName": "Sheet1",
+              "headerRow": true,
+              "values": {
+                "value": [
+                  ["ID", "Name"],
+                  ["1", "Test"]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "some-other-node",
+      "name": "Some Other Operation",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [500, 300],
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "status",
+              "value": "created"
+            }
+          ]
+        },
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Create Spreadsheet": {
+      "main": [
+        [
+          {
+            "node": "Some Other Operation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

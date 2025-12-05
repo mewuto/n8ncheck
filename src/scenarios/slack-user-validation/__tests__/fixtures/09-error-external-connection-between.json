@@ -1,0 +1,684 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "reaction",
+        "channelId": {
+          "__rl": true,
+          "value": "={{ $json.channel }}",
+          "mode": "id"
+        },
+        "timestamp": "={{ $json.ts }}",
+        "name": "loading"
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -4128,
+        -288
+      ],
+      "id": "9be06573-56f3-49f5-8304-9c220acced1f",
+      "name": "Add working reaction",
+      "webhookId": "e0893296-4e2a-4d5c-b751-bb1876a9e531",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "resource": "user",
+        "operation": "getProfile",
+        "user": {
+          "__rl": true,
+          "value": "={{ $json.user }}",
+          "mode": "id"
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -4320,
+        224
+      ],
+      "id": "6849980b-32c8-4922-88e0-5c425adfb25e",
+      "name": "Get Profile",
+      "webhookId": "a4f8b7a5-5e4d-4984-ba6d-865d906a3281"
+    },
+    {
+      "parameters": {
+        "trigger": [
+          "app_mention"
+        ],
+        "channelId": {
+          "__rl": true,
+          "value": "G1234ABCD",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [
+        -4928,
+        -80
+      ],
+      "id": "567fd3d4-82b7-4b90-a092-04e05ab05b2c",
+      "name": "Slack Mention Trigger",
+      "webhookId": "3c12a39f-b8ff-4845-88e1-628fe2cdbf1b"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a56b298e-0fa2-49d5-b1d7-03cdc7ee2114",
+              "leftValue": "={{ $json.context.uesr.email }}",
+              "rightValue": "xxxxx@example.com",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -3120,
+        320
+      ],
+      "id": "ec536b40-645a-44ad-a74b-25bd07d46d2f",
+      "name": "Restrict users who can execute this workflow"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -4080,
+        112
+      ],
+      "id": "e23b2d7a-c9f4-4824-895f-303837f2d25a",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"chatInput\": \"{{ $json.text.substring($json.text.indexOf(\" \")+1) }}\",\n  \"sessionId\": \"{{ $json.thread_ts || $json.ts }}\",\n  \"context\": {\n    \"uesr\": {\n      \"id\": \"{{ $json.user }}\",\n      \"name\": \"{{ $json.real_name_normalized }}\",\n      \"email\": \"{{ $json.email }}\",\n    },\n    \"channel: \"{{ $json.channel }}\",\n    \"ts\": \"{{ $json.ts }}\",\n    \"thread_ts\": {{ $json.thread_ts || $json.ts }},\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -3888,
+        112
+      ],
+      "id": "b4fd28a7-757a-4d38-b1e8-acb53d4a34b0",
+      "name": "Make Context"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "useDataOfInput": 2
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -3520,
+        96
+      ],
+      "id": "deb3e312-e459-4a78-a67d-54195b95ba75",
+      "name": "Wait Adding Loading Reaction"
+    },
+    {
+      "parameters": {
+        "resource": "reaction",
+        "operation": "remove",
+        "channelId": {
+          "__rl": true,
+          "value": "={{ $json.context.channel }}",
+          "mode": "id"
+        },
+        "timestamp": "={{ $json.context.ts }}",
+        "name": "loading"
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -2848,
+        336
+      ],
+      "id": "65eabbf1-ffef-4757-8d01-817b73828b6c",
+      "name": "Remove Loading Reaction",
+      "webhookId": "e0893296-4e2a-4d5c-b751-bb1876a9e531",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "resource": "reaction",
+        "channelId": {
+          "__rl": true,
+          "value": "={{ $json.context.channel }}",
+          "mode": "id"
+        },
+        "timestamp": "={{ $json.context.ts }}",
+        "name": "failed_red"
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -2848,
+        512
+      ],
+      "id": "5da1534f-c2c4-4020-9b14-9e813f6e45cb",
+      "name": "Add fail Reaction",
+      "webhookId": "e0893296-4e2a-4d5c-b751-bb1876a9e531",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "={{ $json.context.channel }}",
+          "mode": "id"
+        },
+        "text": "You are not allowed to conduct this workflow.",
+        "otherOptions": {
+          "includeLinkToWorkflow": false,
+          "thread_ts": {
+            "replyValues": {
+              "thread_ts": "={{ $json.context.ts }}"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -2448,
+        576
+      ],
+      "id": "c9e9b93a-f6ab-4c51-b767-f60336f57a8c",
+      "name": "Send a message",
+      "webhookId": "901e2955-35a9-43d6-a95a-ad9a6c51d545"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "numberInputs": 3,
+        "useDataOfInput": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -2624,
+        560
+      ],
+      "id": "9ce77700-dab3-4eaf-8a8e-824f95b437e4",
+      "name": "Wait Adding Fail Reaction"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=You are a helpful assistant.\n\n<context>\n{{ $json.context && JSON.stringify($json.context, null, 2) }}\n</context>",
+          "maxIterations": 10
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -2720,
+        -336
+      ],
+      "id": "600ce7be-f3a7-4cc6-a00d-ed22c93e4664",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "openai/gpt-5",
+          "mode": "list",
+          "cachedResultName": "openai/gpt-5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -2784,
+        -128
+      ],
+      "id": "7aa793f8-75cc-4b30-930e-ee9a6042573d",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.sessionId }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -2624,
+        -128
+      ],
+      "id": "23e92412-c9c9-43dc-951d-93bc55be514e",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "={{ $json.context.channel }}",
+          "mode": "id"
+        },
+        "text": "={{ $json.output }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": false,
+          "thread_ts": {
+            "replyValues": {
+              "thread_ts": "={{ $json.context.ts }}"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -1472,
+        -336
+      ],
+      "id": "989b27ac-3a7d-44ca-ab57-4769eee931d0",
+      "name": "Reply to User",
+      "webhookId": "901e2955-35a9-43d6-a95a-ad9a6c51d545"
+    },
+    {
+      "parameters": {
+        "content": "## WebHook Trigger Node\n\nYou can create your slack app with allowed permissions that's defined https://docs.google.com/spreadsheets/d/EXAMPLE_SPREADSHEET_ID/edit\nIf you need other permissions, you have to get a review from security team at slack app creation time.\n\nYou must change webhook URL as unique.",
+        "height": 432,
+        "width": 384
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -5136,
+        -336
+      ],
+      "id": "49889f85-953c-4777-b469-47aad081f889",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Preparation for context\n\nMake slack context for AI and some other nodes. To pass slack context for AI Agent is important to let AI work properly.",
+        "height": 448,
+        "width": 768
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -4464,
+        -32
+      ],
+      "id": "c2581b33-8360-4f58-93b3-672b1427b496",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## React user action\n\nIt's kind if you react to user message.",
+        "height": 336,
+        "width": 576
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -4352,
+        -432
+      ],
+      "id": "3a1b58ed-b696-431a-8783-893a479bb21e",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Restrict users\n\nIt might be important to restrict users who can execute the workflow.",
+        "height": 608,
+        "width": 944
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -3184,
+        192
+      ],
+      "id": "5f39e3bf-1212-492a-8663-7fc0edee7b9f",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -2064,
+        -320
+      ],
+      "id": "c40c2c13-c950-40d0-b16b-c2ba682f7671",
+      "name": "Merge AI Output and Context"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -1664,
+        -336
+      ],
+      "id": "6f694056-cb4a-49c5-bfee-f84ccb76b9e3",
+      "name": "Wait Remove Loading Reaction-2"
+    },
+    {
+      "parameters": {
+        "resource": "reaction",
+        "operation": "remove",
+        "channelId": {
+          "__rl": true,
+          "value": "={{ $json.context.channel }}",
+          "mode": "id"
+        },
+        "timestamp": "={{ $json.context.ts }}",
+        "name": "loading"
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -1872,
+        -448
+      ],
+      "id": "96c716ff-6e9e-4c22-8898-59ff942e4c5c",
+      "name": "Remove Loading Reaction-2",
+      "webhookId": "e0893296-4e2a-4d5c-b751-bb1876a9e531",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "content": "## AI Agent\n\n### Tips\n\n1. **LiteLLM Token** is expired at three months. You must regenerate in each three months.\n2. You can pass the context with system prompt. It helps AI Agent to work properly.",
+        "height": 592,
+        "width": 752
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -3056,
+        -560
+      ],
+      "id": "d86d6470-6a59-4f76-9cb2-b34242ad0fa3",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -3344,
+        144
+      ],
+      "id": "25624f80-42bd-4fe5-8cee-5e14898ac6f9",
+      "name": "HTTP Request"
+    }
+  ],
+  "connections": {
+    "Add working reaction": {
+      "main": [
+        [
+          {
+            "node": "Wait Adding Loading Reaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Profile": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Slack Mention Trigger": {
+      "main": [
+        [
+          {
+            "node": "Add working reaction",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Profile",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restrict users who can execute this workflow": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Remove Loading Reaction",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Add fail Reaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Make Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Make Context": {
+      "main": [
+        [
+          {
+            "node": "Wait Adding Loading Reaction",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Wait Adding Fail Reaction",
+            "type": "main",
+            "index": 2
+          },
+          {
+            "node": "Merge AI Output and Context",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Wait Adding Loading Reaction": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Loading Reaction": {
+      "main": [
+        [
+          {
+            "node": "Wait Adding Fail Reaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add fail Reaction": {
+      "main": [
+        [
+          {
+            "node": "Wait Adding Fail Reaction",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Wait Adding Fail Reaction": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Merge AI Output and Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge AI Output and Context": {
+      "main": [
+        [
+          {
+            "node": "Wait Remove Loading Reaction-2",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Remove Loading Reaction-2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait Remove Loading Reaction-2": {
+      "main": [
+        [
+          {
+            "node": "Reply to User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Loading Reaction-2": {
+      "main": [
+        [
+          {
+            "node": "Wait Remove Loading Reaction-2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Restrict users who can execute this workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "147b38333526c44670f7f687cc2fbfc5f605c1b4e4a1a7caa6f20df5ac79ac57"
+  }
+}

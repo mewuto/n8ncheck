@@ -1,0 +1,71 @@
+{
+  "updatedAt": "2025-10-27T13:41:02.890Z",
+  "createdAt": "2025-10-27T13:41:02.890Z",
+  "id": "ys61Ug88xqNzGv8I",
+  "name": "BigQuery Test - Tool Prod (Warning)",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "ai-agent",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        200,
+        100
+      ],
+      "parameters": {
+        "options": {}
+      }
+    },
+    {
+      "id": "bigquery-tool-prod",
+      "name": "BigQuery Tool Prod",
+      "type": "n8n-nodes-base.googleBigQueryTool",
+      "typeVersion": 2,
+      "position": [
+        400,
+        200
+      ],
+      "parameters": {
+        "toolDescription": "Execute SQL queries on BigQuery production database",
+        "projectId": {
+          "__rl": true,
+          "value": "example-prod",
+          "mode": "id"
+        },
+        "sqlQuery": "SELECT COUNT(*) FROM production_table",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "BigQuery Tool Prod": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ],
+      "main": []
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "ad2cd0c0-e6bf-49e6-8c66-59eb8e7832a9",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

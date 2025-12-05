@@ -1,0 +1,50 @@
+{
+  "name": "Workflow without Google Sheets Creation",
+  "nodes": [
+    {
+      "id": "sheets-read-node",
+      "name": "Read Spreadsheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [300, 300],
+      "parameters": {
+        "resource": "sheet",
+        "operation": "read",
+        "documentId": "1ABC123",
+        "sheetName": "Sheet1",
+        "range": "A:B"
+      }
+    },
+    {
+      "id": "process-node",
+      "name": "Process Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [500, 300],
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "processed",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Read Spreadsheet": {
+      "main": [
+        [
+          {
+            "node": "Process Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

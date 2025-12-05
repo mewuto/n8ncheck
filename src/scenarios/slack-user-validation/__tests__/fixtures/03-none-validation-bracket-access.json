@@ -1,0 +1,61 @@
+{
+  "name": "Test Case 5: Valid bracket access validation - uses 'users' variable",
+  "nodes": [
+    {
+      "id": "slack-trigger-5",
+      "name": "Slack Trigger",
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "trigger": ["app_mention", "message"],
+        "watchWorkspace": false,
+        "options": {}
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "1",
+          "name": "Slack account"
+        }
+      },
+      "webhookId": "test-webhook-id-5"
+    },
+    {
+      "id": "user-validation-5",
+      "name": "User Validation - Bracket access",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "parameters": {
+        "jsCode": "// Get user ID from Slack event data\nconst userId = $input.item.json.user;\n\n// Define authorized users with permissions\nconst users = {\n  'U1234ABCD': { name: 'bot_user', permissions: ['execute'] },\n  'U9999XXXX': { name: 'readonly_user', permissions: ['read'] }\n};\n\n// Check authorization using bracket access\nif (!users[userId]) {\n  return {\n    error: true,\n    message: `User ${userId} is not authorized to access this workflow`,\n    statusCode: 403\n  };\n}\n\n// Check if user has execute permission\nif (!users[userId].permissions.includes('execute')) {\n  return {\n    error: true,\n    message: `User ${users[userId].name} does not have execute permissions`,\n    statusCode: 403\n  };\n}\n\nreturn {\n  ...($input.item.json),\n  authorizedUser: users[userId],\n  isAuthorized: true,\n  validationMethod: 'bracket_access'\n};"
+      }
+    }
+  ],
+  "connections": {
+    "Slack Trigger": {
+      "main": [
+        [
+          {
+            "node": "User Validation - Bracket access",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "active": false,
+  "id": "test-case-5",
+  "createdAt": "2024-01-01T00:00:00.000Z",
+  "updatedAt": "2024-01-01T00:00:00.000Z"
+}

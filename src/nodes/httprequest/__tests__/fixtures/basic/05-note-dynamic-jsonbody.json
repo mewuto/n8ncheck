@@ -1,0 +1,66 @@
+{
+  "createdAt": "2025-10-23T10:00:00.000Z",
+  "updatedAt": "2025-10-23T10:00:00.000Z",
+  "id": "5Y1H91BFUN5oNOsH",
+  "name": "HTTP Request Test - Dynamic JSON Body Construction",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "http-dynamic-jsonbody",
+      "name": "HTTP Request Dynamic JSON Body",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "url": "https://api.example.com/data",
+        "method": "POST",
+        "authentication": "none",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"data\": $json.requestData }"
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request Dynamic JSON Body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "6967334c-123a-4cd0-843d-977524e5146c",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

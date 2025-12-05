@@ -1,0 +1,143 @@
+{
+  "name": "Google Sheets Create with Intermediate Nodes before Drive Share",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "title": "New Spreadsheet with Intermediate Processing",
+        "sheetsUi": {
+          "sheetValues": [
+            {
+              "title": "Data Sheet"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -400,
+        0
+      ],
+      "id": "sheets-create-node",
+      "name": "Create Spreadsheet"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process spreadsheet data before sharing\nconst spreadsheetInfo = $input.item.json;\nconst spreadsheetId = spreadsheetInfo.spreadsheetId;\nconst spreadsheetUrl = spreadsheetInfo.spreadsheetUrl;\n\n// Add some processing logic\nconst timestamp = new Date().toISOString();\nconst processedData = {\n  ...spreadsheetInfo,\n  processed: true,\n  timestamp: timestamp,\n  shareReady: true\n};\n\nreturn {\n  json: processedData\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -200,
+        0
+      ],
+      "id": "code-process-data",
+      "name": "Process Data"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $json.spreadsheetId }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $credentials.oAuth2Api.access_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "http-get-file-info",
+      "name": "Get File Info"
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={ $('Create Spreadsheet').json.spreadsheetId }",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "group",
+            "emailAddress": "group@example.com"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        200,
+        0
+      ],
+      "id": "drive-share-file",
+      "name": "Share Spreadsheet"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Create Spreadsheet": {
+      "main": [
+        [
+          {
+            "node": "Process Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Data": {
+      "main": [
+        [
+          {
+            "node": "Get File Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get File Info": {
+      "main": [
+        [
+          {
+            "node": "Share Spreadsheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "versionId": "test-intermediate-nodes-v1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "test-intermediate-nodes-instance"
+  },
+  "id": "IntermediateNodesTest",
+  "tags": []
+}

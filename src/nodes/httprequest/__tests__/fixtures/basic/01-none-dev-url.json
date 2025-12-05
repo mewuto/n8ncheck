@@ -1,0 +1,63 @@
+{
+  "createdAt": "2025-10-22T17:08:52.495Z",
+  "updatedAt": "2025-10-22T17:08:52.495Z",
+  "id": "lkDw4mE797oYzhIL",
+  "name": "HTTP Request Test - Dev URL",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "http-dev",
+      "name": "HTTP Request Dev",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "url": "https://api.dev.example.com/data",
+        "method": "GET",
+        "authentication": "none"
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request Dev",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "a97b1478-311a-4cbe-94a7-99d6e4f661a0",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

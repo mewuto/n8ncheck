@@ -1,0 +1,94 @@
+{
+  "name": "Google Sheets Create with Drive Share",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "title": "New Spreadsheet",
+        "sheetsUi": {
+          "sheetValues": [
+            {
+              "title": "Sheet1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -224,
+        0
+      ],
+      "id": "7c02cfc9-8c1b-45a9-b45a-efe5b3084dc1",
+      "name": "Create spreadsheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "5s6y1281FRiLk7EC",
+          "name": "example-spreadsheet-name"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={ $node['Create Spreadsheet'].json.spreadsheetId }",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "user",
+            "emailAddress": "user@example.com"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -16,
+        0
+      ],
+      "id": "0759da27-f6ea-46a6-95bd-bcf1a499abe0",
+      "name": "Share file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "KEsPptpVbVmtTDWi",
+          "name": "google drive oauth"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Create spreadsheet": {
+      "main": [
+        [
+          {
+            "node": "Share file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "versionId": "c8813f7e-f6eb-44ed-9b08-d46fe20bfd5e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "147b38333526c44670f7f687cc2fbfc5f605c1b4e4a1a7caa6f20df5ac79ac57"
+  },
+  "id": "YWkNdXH71uF13vub",
+  "tags": []
+}

@@ -1,0 +1,66 @@
+{
+  "createdAt": "2025-10-23T10:00:00.000Z",
+  "updatedAt": "2025-10-23T10:00:00.000Z",
+  "id": "6Y1H91BFUN5oNOsI",
+  "name": "HTTP Request Test - Dynamic Body Construction",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "http-dynamic-body",
+      "name": "HTTP Request Dynamic Body",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "url": "https://api.example.com/data",
+        "method": "POST",
+        "authentication": "none",
+        "sendBody": true,
+        "specifyBody": "raw",
+        "body": "${process.env.REQUEST_BODY}"
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request Dynamic Body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "6967334c-123a-4cd0-843d-977524e5146d",
+  "triggerCount": 0,
+  "shared": [],
+  "tags": []
+}

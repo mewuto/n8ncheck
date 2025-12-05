@@ -1,0 +1,61 @@
+{
+  "name": "Test Case 2: INVALID - Array includes validation (not supported)",
+  "nodes": [
+    {
+      "id": "slack-trigger-2",
+      "name": "Slack Trigger",
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "trigger": ["app_mention"],
+        "watchWorkspace": false,
+        "options": {}
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "1",
+          "name": "Slack account"
+        }
+      },
+      "webhookId": "test-webhook-id-2"
+    },
+    {
+      "id": "user-validation-2",
+      "name": "User Validation - Array includes",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "parameters": {
+        "jsCode": "// Get user ID from Slack trigger\nconst userId = $input.item.json.user;\n\n// INVALID: Define allowed users as array (arrays are not supported)\nconst allowedUsers = [\n  'U5678EFGH',\n  'U1234ABCD',\n  'U9999XXXX',\n  'U8888YYYY'\n];\n\n// Check if user is in allowed list\nif (!allowedUsers.includes(userId)) {\n  return {\n    error: true,\n    message: `Unauthorized access attempt by user: ${userId}`,\n    statusCode: 403,\n    userId: userId\n  };\n}\n\n// User is authorized, proceed\nreturn {\n  ...($input.item.json),\n  isAuthorized: true,\n  userId: userId,\n  validationMethod: 'array_includes'\n};"
+      }
+    }
+  ],
+  "connections": {
+    "Slack Trigger": {
+      "main": [
+        [
+          {
+            "node": "User Validation - Array includes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "active": false,
+  "id": "test-case-2",
+  "createdAt": "2024-01-01T00:00:00.000Z",
+  "updatedAt": "2024-01-01T00:00:00.000Z"
+}

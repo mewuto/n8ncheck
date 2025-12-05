@@ -1,0 +1,61 @@
+{
+  "name": "Test Case 6: Valid $json.user pattern - uses 'users' variable",
+  "nodes": [
+    {
+      "id": "slack-trigger-6",
+      "name": "Slack Trigger",
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "trigger": ["app_mention"],
+        "watchWorkspace": false,
+        "options": {}
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "1",
+          "name": "Slack account"
+        }
+      },
+      "webhookId": "test-webhook-id-6"
+    },
+    {
+      "id": "user-validation-6",
+      "name": "User Validation - $json.user",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "parameters": {
+        "jsCode": "// Alternative pattern: using $json.user directly\nconst userId = $json.user;\n\n// Simple user whitelist using 'users' variable name\nconst users = {\n  'U1234ABCD': 'bot_user'\n};\n\n// Validate using hasOwnProperty\nif (!users.hasOwnProperty(userId)) {\n  throw new Error(`Access denied for user: ${userId}`);\n}\n\nreturn {\n  userId: userId,\n  authorizedUser: users[userId],\n  isAuthorized: true,\n  validationMethod: 'hasOwnProperty',\n  accessPattern: '$json.user'\n};"
+      }
+    }
+  ],
+  "connections": {
+    "Slack Trigger": {
+      "main": [
+        [
+          {
+            "node": "User Validation - $json.user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "active": false,
+  "id": "test-case-6",
+  "createdAt": "2024-01-01T00:00:00.000Z",
+  "updatedAt": "2024-01-01T00:00:00.000Z"
+}
