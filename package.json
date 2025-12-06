@@ -1,6 +1,6 @@
 {
   "name": "@mewuto/n8ncheck",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Security vulnerability checker for n8n workflows",
   "main": "dist/index.js",
   "bin": {
