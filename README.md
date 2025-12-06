@@ -1,5 +1,6 @@
 # n8ncheck
 
+[![npm version](https://img.shields.io/npm/v/@mewuto/n8ncheck.svg)](https://www.npmjs.com/package/@mewuto/n8ncheck)
 [![Test](https://github.com/mewuto/n8ncheck/workflows/Test/badge.svg)](https://github.com/mewuto/n8ncheck/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -13,48 +14,72 @@ Security vulnerability checker for n8n workflows.
 
 ## Installation
 
-### Prerequisites
-
-- Node.js >= 18.0.0
-- npm
-
-### Setup
+Install globally from npm:
 
 ```bash
-npm install
-npm run build
+npm install -g @mewuto/n8ncheck
 ```
+
+**Prerequisites**: Node.js >= 20.0.0
 
 ## Usage
 
-### Basic Commands
+### Basic Analysis
+
+Analyze an n8n workflow file for security vulnerabilities:
 
 ```bash
 # Basic security analysis (console output)
-npm run dev analyze workflow.json
-
-# PR comment format for GitHub integration
-npm run dev analyze workflow.json -- -f pr-comment
+n8ncheck analyze workflow.json
 ```
 
-### Production Usage
+**Example Output**:
+```
+=== n8n Workflow Security Analysis ===
+
+Workflow Information:
+  Name: HTTP Request Test - Production URL Warning
+  Total Nodes: 2
+  Analysis Time: 2025/12/6 14:59:33
+
+Security Analysis Summary:
+  ✓ Checks Passed: 1
+  ⚠ Warnings: 1
+  ✗ Errors: 0
+  ℹ Notes: 0
+
+⚠️  Security Warnings:
+  ⚠ Production environment URL detected
+    Node: HTTP Request Prod (http-prod)
+
+Overall Security Assessment:
+  Risk Level: MEDIUM
+
+=== End of Analysis ===
+```
+
+### Output Formats
+
+Choose different output formats for various use cases:
 
 ```bash
-# Build and run analysis
-npm run build
+# Console output (default) - human-readable format
 n8ncheck analyze workflow.json
 
-# Or using node directly
-node dist/index.js analyze workflow.json
+# JSON format - for programmatic processing
+n8ncheck analyze workflow.json -f json -o report.json
+
+# PR comment format - for GitHub Actions integration
+n8ncheck analyze workflow.json -f pr-comment
 ```
 
-### Options
+### Command Options
 
 | Option | Description | Default |
 |--------|-------------|---------|
-| `-f, --format <type>` | Output format: `console`, `pr-comment` | console |
+| `-f, --format <type>` | Output format: `console`, `json`, `pr-comment` | `console` |
 | `-o, --output <file>` | Save output to file | stdout |
-| `-g, --graph` | Show detailed graph information | false |
+| `-g, --graph` | Show detailed graph information | `false` |
 
 ## Security Checks
 
@@ -95,6 +120,33 @@ Additional workflow-level security scenarios are supported.
 
 ## Development
 
+### Setup from Source
+
+For development or contributing:
+
+```bash
+npm install
+npm run build
+```
+
+**Prerequisites**:
+- Node.js >= 20.0.0
+- npm
+
+### Development Commands
+
+```bash
+# Run from source without building
+npm run dev analyze workflow.json
+
+# Run with PR comment format
+npm run dev:pr-comment workflow.json
+
+# Build and run
+npm run build
+node dist/index.js analyze workflow.json
+```
+
 ### Available Commands
 
 | Command | Description |
@@ -121,12 +173,6 @@ npm run lint
 # Type checking
 npm run typecheck
 ```
-
-## Contributing
-
-We welcome bug fixes and documentation improvements. If you find issues, please submit an issue first.
-
-If you want to submit a PR for bug fixes or documentation, please read the [CONTRIBUTING.md](CONTRIBUTING.md) and follow the instructions beforehand.
 
 ## License
 
