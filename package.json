@@ -1,10 +1,13 @@
 {
-  "name": "n8ncheck",
+  "name": "@mewuto/n8ncheck",
   "version": "1.0.0",
   "description": "Security vulnerability checker for n8n workflows",
   "main": "dist/index.js",
   "bin": {
     "n8ncheck": "dist/index.js"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
     "build": "tsc",
