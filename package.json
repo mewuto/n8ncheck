@@ -61,7 +61,7 @@
     "graphology-dag": "^0.4.1",
     "graphology-traversal": "^0.3.1",
     "js-yaml": "^4.1.0",
-    "n8n-nodes-base": "^1.118.1",
+    "n8n-nodes-base": "^2.2.1",
     "n8n-workflow": "^1.117.0"
   },
   "devDependencies": {
