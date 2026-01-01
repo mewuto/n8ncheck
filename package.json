@@ -65,7 +65,7 @@
     "n8n-workflow": "^1.117.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.6",
+    "@biomejs/biome": "2.3.10",
     "@n8n/api-types": "^0.54.0",
     "@types/babel__traverse": "^7.28.0",
     "@types/jest": "^30.0.0",
